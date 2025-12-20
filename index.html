@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OJASV APURV. | UX & TECH </title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'off-white': '#f9f9f9',
+                        'charcoal': '#1a1a1a',
+                    },
+                    screens: {
+                        '3xl': '1920px',
+                        '4k': '2560px',
+                    },
+                    letterSpacing: {
+                        'tighter-editorial': '-0.05em',
+                        'widest-editorial': '0.2em',
+                    },
+                    height: {
+                        'screen-90': '90vh',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Utilities for Finesse */
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            overflow-x: hidden;
+        }
+
+        .editorial-text {
+            line-height: 0.9;
+        }
+
+        /* Image Hover Effect */
+        .img-reveal-wrapper {
+            overflow: hidden;
+        }
+        .img-reveal {
+            transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s ease;
+        }
+        .group:hover .img-reveal {
+            transform: scale(1.05);
+        }
+
+        /* Minimal Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #000;
+        }
+
+        /* Fade Up Animation Class */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease-out, transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Chat Widget Animations */
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .message-anim {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-black selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-6 md:px-12 mix-blend-difference text-white md:text-black md:mix-blend-normal bg-transparent transition-all duration-300" id="navbar">
+        <a href="#" class="text-xl md:text-2xl font-serif tracking-tighter z-50 mix-blend-difference text-white md:text-black">
+            OJASV APURV.
+        </a>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-12 text-xs tracking-widest-editorial font-medium uppercase">
+            <a href="#work" class="hover:underline underline-offset-4 decoration-1">Work</a>
+            <a href="#photography" class="hover:underline underline-offset-4 decoration-1">Visuals</a>
+            <a href="#journal" class="hover:underline underline-offset-4 decoration-1">Journal</a>
+            <a href="#about" class="hover:underline underline-offset-4 decoration-1">Profile</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden z-50 text-2xl mix-blend-difference text-white">
+            <i class="ph ph-list"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-center items-center text-center">
+        <div class="flex flex-col space-y-8 text-4xl font-serif italic">
+            <a href="#work" class="mobile-link hover:text-gray-500 transition-colors">Work</a>
+            <a href="#photography" class="mobile-link hover:text-gray-500 transition-colors">Visuals</a>
+            <a href="#journal" class="mobile-link hover:text-gray-500 transition-colors">Journal</a>
+            <a href="#about" class="mobile-link hover:text-gray-500 transition-colors">Profile</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative w-full h-screen flex flex-col justify-end pb-12 md:pb-24 px-6 md:px-12 overflow-hidden">
+        <!-- Background Image (Absolute) -->
+        <div class="absolute inset-0 z-0">
+            <!-- 
+                UPDATED: References your uploaded file.
+                ADDED STYLING: 'grayscale' (B&W), 'contrast-125' (Editorial look), 'brightness-75' (Text readability)
+            -->
+            <img src="Screenshot 2022-12-01 at 5.20.09 PM.jpg" 
+                 onerror="this.src='https://images.unsplash.com/photo-1502680390469-be75c86b636f?q=80&w=2670&auto=format&fit=crop'"
+                 alt="Surfing in motion" 
+                 class="w-full h-full object-cover object-center grayscale contrast-125 brightness-75 transition-transform duration-[2s] hover:scale-105">
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 text-white max-w-screen-4k mx-auto w-full">
+            <div class="fade-up delay-100">
+                <p class="text-xs md:text-sm tracking-widest-editorial uppercase mb-4">UX Designer & Visual Artist</p>
+            </div>
+            <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl 4k:text-[12rem] editorial-text tracking-tighter mb-6 fade-up delay-200">
+                Digital <br>
+                <span class="italic font-light opacity-90">Craftsmanship</span>
+            </h1>
+        </div>
+    </header>
+
+    <!-- Introduction / Manifesto -->
+    <section class="py-24 md:py-40 px-6 md:px-12 max-w-screen-4k mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
+        <div class="md:col-span-4 fade-up">
+            <h2 class="text-xs tracking-widest-editorial uppercase border-t border-black pt-4">About Me</h2>
+        </div>
+        <div class="md:col-span-8 lg:col-span-6 fade-up delay-100">
+            <p class="font-serif text-3xl md:text-4xl lg:text-5xl leading-tight">
+                I bridge the gap between functional design and artistic expression. With a background in fine arts and a focus on user experience, I create digital products that feel intuitive yet distinctly human.
+            </p>
+        </div>
+    </section>
+
+    <!-- Selected Works (UX/UI) -->
+    <section id="work" class="px-6 md:px-12 pb-24 md:pb-40 max-w-screen-4k mx-auto">
+        <div class="flex justify-between items-end mb-16 md:mb-24 border-b border-gray-200 pb-4 fade-up">
+            <h2 class="text-5xl md:text-7xl font-serif">Selected Works</h2>
+            <span class="text-xs tracking-widest-editorial hidden md:inline-block">2023 — 2025</span>
+        </div>
+
+        <!-- Project 1: Full Width -->
+        <div class="group mb-24 md:mb-40 fade-up">
+            <div class="w-full aspect-[16/9] md:aspect-[21/9] img-reveal-wrapper bg-gray-100 mb-6">
+                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2574&auto=format&fit=crop" 
+                     alt="Project One" class="w-full h-full object-cover img-reveal grayscale group-hover:grayscale-0">
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div>
+                    <h3 class="text-3xl md:text-4xl font-serif italic mb-2">Ethereal Commerce</h3>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest">UX Research / UI Design</p>
+                </div>
+                <a href="#" class="mt-4 md:mt-0 px-8 py-3 border border-black text-xs uppercase tracking-widest hover:bg-black hover:text-white transition-colors">View Case Study</a>
+            </div>
+        </div>
+
+        <!-- Grid for Projects 2 & 3 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
+            <!-- Project 2 -->
+            <div class="group fade-up">
+                <div class="w-full aspect-[4/5] img-reveal-wrapper bg-gray-100 mb-6">
+                    <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?q=80&w=2680&auto=format&fit=crop" 
+                         alt="Project Two" class="w-full h-full object-cover img-reveal grayscale group-hover:grayscale-0">
+                </div>
+                <div>
+                    <h3 class="text-2xl md:text-3xl font-serif italic mb-2">Fintech Flow</h3>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest">Mobile App / Strategy</p>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="group md:mt-32 fade-up">
+                <div class="w-full aspect-[4/5] img-reveal-wrapper bg-gray-100 mb-6">
+                    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=2555&auto=format&fit=crop" 
+                         alt="Project Three" class="w-full h-full object-cover img-reveal grayscale group-hover:grayscale-0">
+                </div>
+                <div>
+                    <h3 class="text-2xl md:text-3xl font-serif italic mb-2">Architectural Digest</h3>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest">Web Design / Branding</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visuals (Photography & Painting) -->
+    <section id="photography" class="bg-black text-white py-24 md:py-40 px-6 md:px-12">
+        <div class="max-w-screen-4k mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-24">
+                <div class="md:col-span-4 fade-up">
+                    <h2 class="text-xs tracking-widest-editorial uppercase border-t border-white/30 pt-4">Visual Arts</h2>
+                    <p class="mt-8 font-serif text-2xl leading-relaxed text-gray-300">
+                        When I'm not designing interfaces, I explore texture and light through oil painting and analog photography.
+                    </p>
+                    
+                    <!-- GEMINI API FEATURE 1: Creative Spark Generator -->
+                    <div class="mt-12">
+                        <button id="spark-btn" onclick="generateCreativeSpark()" class="flex items-center space-x-2 text-sm uppercase tracking-widest border border-white/50 px-6 py-3 hover:bg-white hover:text-black transition-all">
+                            <span>✨ Generate Creative Prompt</span>
+                        </button>
+                        <div id="spark-output" class="hidden mt-6 p-6 border-l-2 border-white/20 bg-white/5 backdrop-blur-sm">
+                            <p class="font-serif text-xl italic leading-relaxed text-white/90" id="spark-text"></p>
+                            <p class="text-xs uppercase tracking-widest text-white/40 mt-4">— AI Muse</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Masonry-style Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+                <!-- Item 1 -->
+                <div class="md:col-span-1 fade-up">
+                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb39279c23?q=80&w=2670&auto=format&fit=crop" 
+                         class="w-full h-[60vh] object-cover opacity-80 hover:opacity-100 transition-opacity duration-500" alt="Painting 1">
+                    <p class="mt-2 text-xs text-gray-400">Oil on Canvas, 2024</p>
+                </div>
+                <!-- Item 2 -->
+                <div class="md:col-span-1 md:pt-24 fade-up delay-100">
+                    <img src="https://images.unsplash.com/photo-1515462277126-2dd0c162007a?q=80&w=2576&auto=format&fit=crop" 
+                         class="w-full h-[50vh] object-cover opacity-80 hover:opacity-100 transition-opacity duration-500" alt="Photography 1">
+                    <p class="mt-2 text-xs text-gray-400">35mm Film, Tokyo</p>
+                </div>
+                 <!-- Item 3 -->
+                 <div class="md:col-span-1 fade-up delay-200">
+                    <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?q=80&w=2670&auto=format&fit=crop" 
+                         class="w-full h-[70vh] object-cover opacity-80 hover:opacity-100 transition-opacity duration-500" alt="Painting 2">
+                    <p class="mt-2 text-xs text-gray-400">Abstract Study No. 5</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journal / Blog -->
+    <section id="journal" class="py-24 md:py-40 px-6 md:px-12 max-w-screen-4k mx-auto">
+        <h2 class="text-5xl md:text-8xl font-serif mb-16 md:mb-24 fade-up">The Journal</h2>
+
+        <div class="border-t border-black">
+            <!-- Article 1 -->
+            <article class="group border-b border-black py-8 md:py-12 flex flex-col md:flex-row justify-between items-start md:items-center cursor-pointer fade-up">
+                <div class="md:w-3/4">
+                    <span class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Oct 12, 2024</span>
+                    <h3 class="text-3xl md:text-5xl font-serif group-hover:italic transition-all duration-300">
+                        Minimalism in the Age of AI
+                    </h3>
+                </div>
+                <div class="mt-4 md:mt-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-4 md:translate-x-0">
+                    <i class="ph ph-arrow-right text-2xl"></i>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="group border-b border-black py-8 md:py-12 flex flex-col md:flex-row justify-between items-start md:items-center cursor-pointer fade-up delay-100">
+                <div class="md:w-3/4">
+                    <span class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Sep 28, 2024</span>
+                    <h3 class="text-3xl md:text-5xl font-serif group-hover:italic transition-all duration-300">
+                        Color Theory for Dark Mode Interfaces
+                    </h3>
+                </div>
+                <div class="mt-4 md:mt-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-4 md:translate-x-0">
+                    <i class="ph ph-arrow-right text-2xl"></i>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="group border-b border-black py-8 md:py-12 flex flex-col md:flex-row justify-between items-start md:items-center cursor-pointer fade-up delay-200">
+                <div class="md:w-3/4">
+                    <span class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Aug 15, 2024</span>
+                    <h3 class="text-3xl md:text-5xl font-serif group-hover:italic transition-all duration-300">
+                        Why I Still Shoot Film
+                    </h3>
+                </div>
+                <div class="mt-4 md:mt-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-4 md:translate-x-0">
+                    <i class="ph ph-arrow-right text-2xl"></i>
+                </div>
+            </article>
+        </div>
+        
+        <div class="mt-12 text-center fade-up">
+            <a href="#" class="inline-block border-b border-black pb-1 uppercase text-xs tracking-widest hover:text-gray-600">View Archive</a>
+        </div>
+    </section>
+
+    <!-- GEMINI API FEATURE 2: Ask Alex AI Widget -->
+    <div id="ai-chat-widget" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        
+        <!-- Chat Window -->
+        <div id="chat-window" class="hidden bg-white border border-black w-80 md:w-96 shadow-2xl mb-4 flex flex-col transition-all duration-300 origin-bottom-right">
+            <!-- Header -->
+            <div class="bg-black text-white p-4 flex justify-between items-center">
+                <div>
+                    <h4 class="font-serif italic text-lg">Ask Alex AI</h4>
+                    <p class="text-[10px] uppercase tracking-widest opacity-70">Powered by Gemini</p>
+                </div>
+                <button onclick="toggleChat()" class="hover:text-gray-300">
+                    <i class="ph ph-x text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Messages Area -->
+            <div id="chat-messages" class="h-80 overflow-y-auto p-4 space-y-4 bg-off-white">
+                <!-- Intro Message -->
+                <div class="flex flex-col items-start message-anim">
+                    <div class="bg-white border border-gray-200 p-3 max-w-[90%] text-sm shadow-sm">
+                        <span class="block text-[10px] uppercase tracking-widest text-gray-400 mb-1">Alex AI</span>
+                        Hello. I am Alex's digital twin. Ask me about his design philosophy, his experience with Fintech, or his favorite analog camera.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-4 bg-white border-t border-gray-100">
+                <div class="flex items-center border border-gray-300 px-2 py-1 focus-within:border-black transition-colors">
+                    <input type="text" id="chat-input" placeholder="Type a question..." class="flex-1 p-2 outline-none text-sm bg-transparent" onkeypress="handleEnter(event)">
+                    <button onclick="sendMessage()" class="p-2 hover:bg-gray-100 transition-colors">
+                        <i class="ph ph-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toggle Button -->
+        <button onclick="toggleChat()" class="bg-white text-black border border-black hover:bg-black hover:text-white transition-all duration-300 shadow-lg px-6 py-4 flex items-center space-x-3 group">
+            <i class="ph ph-sparkle text-xl group-hover:rotate-12 transition-transform"></i>
+            <span class="text-xs uppercase tracking-widest font-bold">Ask Alex</span>
+        </button>
+    </div>
+
+
+    <!-- Footer -->
+    <footer id="about" class="bg-gray-100 py-24 px-6 md:px-12">
+        <div class="max-w-screen-4k mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <div class="flex flex-col justify-between h-full">
+                <h4 class="font-serif text-2xl italic">Alex V.</h4>
+                <p class="text-sm text-gray-500 mt-4">&copy; 2025 All Rights Reserved.</p>
+            </div>
+            
+            <div>
+                <h5 class="text-xs uppercase tracking-widest mb-6 font-bold">Connect</h5>
+                <ul class="space-y-4 text-sm font-light">
+                    <li><a href="#" class="hover:underline">LinkedIn</a></li>
+                    <li><a href="#" class="hover:underline">Dribbble</a></li>
+                    <li><a href="#" class="hover:underline">Instagram</a></li>
+                    <li><a href="#" class="hover:underline">Behance</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-xs uppercase tracking-widest mb-6 font-bold">Contact</h5>
+                <p class="text-sm font-light mb-4">Available for freelance opportunities and collaborations.</p>
+                <a href="mailto:hello@alexv.com" class="text-lg font-serif italic border-b border-black pb-1 hover:text-gray-600">hello@alexv.com</a>
+            </div>
+
+            <div class="flex items-end justify-end">
+                <a href="#" id="back-to-top" class="w-12 h-12 border border-black rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+                    <i class="ph ph-arrow-up"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // --- CONFIGURATION ---
+        const apiKey = ""; // API Key provided by runtime environment
+        
+        // --- UI INTERACTION SCRIPTS ---
+        
+        // 1. Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const menuIcon = menuBtn.querySelector('i');
+
+        let isMenuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('translate-x-full');
+                menuIcon.classList.remove('ph-list');
+                menuIcon.classList.add('ph-x');
+                menuBtn.classList.remove('text-white');
+                menuBtn.classList.remove('mix-blend-difference');
+                menuBtn.classList.add('text-black');
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+                menuIcon.classList.remove('ph-x');
+                menuIcon.classList.add('ph-list');
+                menuBtn.classList.add('mix-blend-difference');
+                menuBtn.classList.add('text-white');
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                mobileMenu.classList.add('translate-x-full');
+                menuIcon.classList.remove('ph-x');
+                menuIcon.classList.add('ph-list');
+                menuBtn.classList.add('mix-blend-difference');
+                menuBtn.classList.add('text-white');
+            });
+        });
+
+        // 2. Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('backdrop-blur-sm');
+            } else {
+                navbar.classList.remove('backdrop-blur-sm');
+            }
+        });
+
+        // 3. Intersection Observer
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // 4. Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                if (!href || href === '#') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+                try {
+                    const target = document.querySelector(href);
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                } catch (err) { console.warn("Scroll skipped:", href); }
+            });
+        });
+
+        // 5. Back to Top
+        document.getElementById('back-to-top').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+
+        // --- GEMINI AI INTEGRATION ---
+
+        // Helper: Call Gemini API
+        async function callGemini(prompt, systemContext = "") {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: { parts: [{ text: systemContext }] }
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (!response.ok) throw new Error(`API Error: ${response.status}`);
+                
+                const data = await response.json();
+                return data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm having a moment of artist's block. Please try again.";
+            } catch (error) {
+                console.error("Gemini API Error:", error);
+                return "Connection to the digital muse lost. Please try again later.";
+            }
+        }
+
+        // Feature 1: Creative Spark Generator (Visual Arts Section)
+        async function generateCreativeSpark() {
+            const btn = document.getElementById('spark-btn');
+            const output = document.getElementById('spark-output');
+            const textEl = document.getElementById('spark-text');
+            const btnSpan = btn.querySelector('span');
+
+            // Loading State
+            const originalText = btnSpan.innerText;
+            btnSpan.innerText = "Consulting the Muse...";
+            btn.disabled = true;
+
+            const systemPrompt = "You are a creative muse for an abstract artist and photographer. Generate a short, poetic, and cryptic art prompt or photography challenge. It should be one sentence, very evocative, using words about light, texture, or emotion. Example: 'Capture the shadow of a whisper at dawn.'";
+            
+            const prompt = "Give me a unique creative art prompt.";
+
+            const result = await callGemini(prompt, systemPrompt);
+
+            // Display Result
+            textEl.innerText = result;
+            output.classList.remove('hidden');
+            output.classList.add('fade-up', 'visible'); // reuse animation class
+            
+            // Reset Button
+            btnSpan.innerText = originalText;
+            btn.disabled = false;
+        }
+
+        // Feature 2: Ask Alex AI (Chatbot)
+        const chatWindow = document.getElementById('chat-window');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        
+        function toggleChat() {
+            chatWindow.classList.toggle('hidden');
+            if (!chatWindow.classList.contains('hidden')) {
+                chatInput.focus();
+            }
+        }
+
+        function handleEnter(e) {
+            if (e.key === 'Enter') sendMessage();
+        }
+
+        async function sendMessage() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            // 1. Add User Message
+            appendMessage('Visitor', text);
+            chatInput.value = '';
+
+            // 2. Add Loading Indicator
+            const loadingId = appendLoading();
+
+            // 3. Construct Context for Persona
+            const alexPersona = `
+                You are a digital persona of Alex V., a Portfolio Assistant. 
+                Alex is a UX Designer & Visual Artist based on the following portfolio content:
+                - Style: Minimalist, editorial, uses 'Playfair Display' and 'Inter' fonts. Clean, high-contrast, black and white aesthetic.
+                - Experience: Created 'Ethereal Commerce' (UX Research), 'Fintech Flow' (Mobile App), and done web design for 'Architectural Digest'.
+                - Hobbies: Oil painting and analog photography (35mm film).
+                - Tone: Sophisticated, polite, slightly artistic, professional but approachable. Use concise, elegant language.
+                - Contact: hello@alexv.com for freelance.
+                
+                Answer the user's question as if you are Alex's AI assistant. Keep answers relatively short (under 50 words) unless asked for details.
+            `;
+
+            // 4. Call API
+            const responseText = await callGemini(text, alexPersona);
+
+            // 5. Remove Loading & Add AI Message
+            removeLoading(loadingId);
+            appendMessage('Alex AI', responseText);
+        }
+
+        function appendMessage(sender, text) {
+            const isUser = sender === 'Visitor';
+            const align = isUser ? 'items-end' : 'items-start';
+            const bg = isUser ? 'bg-black text-white' : 'bg-white border border-gray-200';
+            const labelColor = isUser ? 'text-gray-400' : 'text-gray-400';
+
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `flex flex-col ${align} message-anim`;
+            msgDiv.innerHTML = `
+                <div class="${bg} p-3 max-w-[90%] text-sm shadow-sm">
+                    <span class="block text-[10px] uppercase tracking-widest ${labelColor} mb-1">${sender}</span>
+                    ${text}
+                </div>
+            `;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function appendLoading() {
+            const id = 'loading-' + Date.now();
+            const msgDiv = document.createElement('div');
+            msgDiv.id = id;
+            msgDiv.className = `flex flex-col items-start message-anim`;
+            msgDiv.innerHTML = `
+                <div class="bg-white border border-gray-200 p-4 shadow-sm">
+                    <div class="flex space-x-1">
+                        <div class="w-1.5 h-1.5 bg-black rounded-full typing-dot"></div>
+                        <div class="w-1.5 h-1.5 bg-black rounded-full typing-dot" style="animation-delay: 0.2s"></div>
+                        <div class="w-1.5 h-1.5 bg-black rounded-full typing-dot" style="animation-delay: 0.4s"></div>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return id;
+        }
+
+        function removeLoading(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+    </script>
+</body>
+</html>
