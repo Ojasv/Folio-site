@@ -334,7 +334,8 @@
             <!-- Header -->
             <div class="bg-black text-white p-4 flex justify-between items-center">
                 <div>
-                    <h4 class="font-serif italic text-lg">Ask OJ AI</h4>
+                    <!-- UPDATED: Removed italic, added tracking-widest for professional look -->
+                    <h4 class="font-serif text-lg tracking-widest">ASK OJ AI</h4>
                     <p class="text-[10px] uppercase tracking-widest opacity-70">Powered by Gemini</p>
                 </div>
                 <button onclick="toggleChat()" class="hover:text-gray-300">
@@ -367,7 +368,8 @@
         <!-- Toggle Button -->
         <button onclick="toggleChat()" class="bg-white text-black border border-black hover:bg-black hover:text-white transition-all duration-300 shadow-lg px-6 py-4 flex items-center space-x-3 group">
             <i class="ph ph-sparkle text-xl group-hover:rotate-12 transition-transform"></i>
-            <span class="text-xs uppercase tracking-widest font-bold">Ask OJ</span>
+            <!-- UPDATED: Switched to serif font to match brand identity -->
+            <span class="text-xs uppercase tracking-widest font-serif">Ask OJ</span>
         </button>
     </div>
 
@@ -417,7 +419,8 @@
     <!-- JavaScript -->
     <script>
         // --- CONFIGURATION ---
-        const apiKey = ""; // API Key provided by runtime environment
+        // Get one here: https://aistudio.google.com/app/apikey
+        const apiKey = "AIzaSyDiWXVvrAMJLzxoe2leoU2R-Jko8_BZm-I"; 
         
         // --- UI INTERACTION SCRIPTS ---
         
