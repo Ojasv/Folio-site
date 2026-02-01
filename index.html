@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OJASV APURV | UX & TECH </title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://github.com/Ojasv/Folio-site/blob/main/Images/OJ_Favicon.png?raw=true">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -144,13 +147,12 @@
         <!-- Background Image (Absolute) -->
         <div class="absolute inset-0 z-0">
             <!-- 
-                UPDATED: References your uploaded file: OG_OJ_21_9_Aspect_Smaller.jpg
-                STYLING PRESERVED: 'grayscale' (B&W), 'contrast-125' (Editorial look), 'brightness-75' (Text readability)
+                UPDATED: Added 'contrast-75' for softer look. Added hover effects to reveal original color.
             -->
             <img src="https://github.com/Ojasv/Folio-site/blob/main/Images/OG_OJ_21_9_Aspect_Smaller.png?raw=true" 
                  onerror="this.src='https://images.unsplash.com/photo-1502680390469-be75c86b636f?q=80&w=2670&auto=format&fit=crop'"
                  alt="Surfing hero image" 
-                 class="w-full h-full object-cover object-center grayscale contrast-125 brightness-75 transition-transform duration-[2s] hover:scale-105">
+                 class="w-full h-full object-cover object-center grayscale brightness-[0.6] contrast-75 transition-all duration-[2s] hover:scale-105 hover:grayscale-0 hover:brightness-100 hover:contrast-100">
         </div>
 
         <!-- Content -->
@@ -374,7 +376,7 @@
     <footer id="about" class="bg-gray-100 py-24 px-6 md:px-12">
         <div class="max-w-screen-4k mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             <div class="flex flex-col justify-between h-full">
-                <h4 class="font-serif text-2xl italic">OJASV</h4>
+                <h4 class="font-serif text-2xl tracking-widest">OJASV</h4>
                 <!-- Moved copyright to the right side -->
             </div>
             
