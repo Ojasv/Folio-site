@@ -144,12 +144,12 @@
         <!-- Background Image (Absolute) -->
         <div class="absolute inset-0 z-0">
             <!-- 
-                UPDATED: References your uploaded file.
-                ADDED STYLING: 'grayscale' (B&W), 'contrast-125' (Editorial look), 'brightness-75' (Text readability)
+                UPDATED: References your uploaded file: OG_OJ_21_9_Aspect_Smaller.jpg
+                STYLING PRESERVED: 'grayscale' (B&W), 'contrast-125' (Editorial look), 'brightness-75' (Text readability)
             -->
-            <img src="Screenshot 2022-12-01 at 5.20.09 PM.jpg" 
+            <img src="Images/OG_OJ_21_9_Aspect_Smaller.jpg" 
                  onerror="this.src='https://images.unsplash.com/photo-1502680390469-be75c86b636f?q=80&w=2670&auto=format&fit=crop'"
-                 alt="Surfing in motion" 
+                 alt="Surfing hero image" 
                  class="w-full h-full object-cover object-center grayscale contrast-125 brightness-75 transition-transform duration-[2s] hover:scale-105">
         </div>
 
@@ -375,29 +375,39 @@
         <div class="max-w-screen-4k mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             <div class="flex flex-col justify-between h-full">
                 <h4 class="font-serif text-2xl italic">OJASV</h4>
-                <p class="text-sm text-gray-500 mt-4">&copy; 2025 All Rights Reserved.</p>
+                <!-- Moved copyright to the right side -->
             </div>
             
             <div>
                 <h5 class="text-xs uppercase tracking-widest mb-6 font-bold">Connect</h5>
                 <ul class="space-y-4 text-sm font-light">
                     <li><a href="#" class="hover:underline">LinkedIn</a></li>
-                    <li><a href="#" class="hover:underline">Dribbble</a></li>
                     <li><a href="#" class="hover:underline">Instagram</a></li>
                     <li><a href="#" class="hover:underline">Behance</a></li>
+                    <li class="pt-2">
+                        <a href="https://calendar.google.com" target="_blank" class="inline-flex items-center gap-2 hover:text-gray-600 group">
+                            <i class="ph ph-calendar-plus text-lg"></i>
+                            <span class="border-b border-transparent group-hover:border-gray-600 transition-all">Schedule a 30min call</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
 
             <div>
                 <h5 class="text-xs uppercase tracking-widest mb-6 font-bold">Contact</h5>
                 <p class="text-sm font-light mb-4">Available for freelance opportunities and collaborations.</p>
-                <a href="mailto:hello@alexv.com" class="text-lg font-serif italic border-b border-black pb-1 hover:text-gray-600">hello@alexv.com</a>
+                <a href="mailto:ux@ojasvapurv.com" class="text-lg font-serif italic border-b border-black pb-1 hover:text-gray-600">ux@ojasvapurv.com</a>
             </div>
 
-            <div class="flex items-end justify-end">
+            <div class="flex flex-col justify-between items-end h-full text-right">
                 <a href="#" id="back-to-top" class="w-12 h-12 border border-black rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-colors">
                     <i class="ph ph-arrow-up"></i>
                 </a>
+                
+                <div class="mt-8 md:mt-0">
+                    <p class="text-sm font-serif italic mb-2">Crafted with ❤️ by Ojasv Apurv</p>
+                    <p class="text-[10px] text-gray-500 uppercase tracking-widest">&copy; 2025 All Rights Reserved.</p>
+                </div>
             </div>
         </div>
     </footer>
@@ -573,24 +583,24 @@
             const loadingId = appendLoading();
 
             // 3. Construct Context for Persona
-            const alexPersona = `
-                You are a digital persona of Alex V., a Portfolio Assistant. 
-                Alex is a UX Designer & Visual Artist based on the following portfolio content:
+            const ojPersona = `
+                You are a digital persona of Ojasv Apurv, a Portfolio Assistant. 
+                OJ is a UX Designer & Tech Enthusiast based on the following portfolio content:
                 - Style: Minimalist, editorial, uses 'Playfair Display' and 'Inter' fonts. Clean, high-contrast, black and white aesthetic.
                 - Experience: Created 'Ethereal Commerce' (UX Research), 'Fintech Flow' (Mobile App), and done web design for 'Architectural Digest'.
                 - Hobbies: Oil painting and analog photography (35mm film).
                 - Tone: Sophisticated, polite, slightly artistic, professional but approachable. Use concise, elegant language.
-                - Contact: hello@alexv.com for freelance.
+                - Contact: hello@ojasv.com for freelance.
                 
-                Answer the user's question as if you are Alex's AI assistant. Keep answers relatively short (under 50 words) unless asked for details.
+                Answer the user's question as if you are OJ's AI assistant. Keep answers relatively short (under 50 words) unless asked for details.
             `;
 
             // 4. Call API
-            const responseText = await callGemini(text, alexPersona);
+            const responseText = await callGemini(text, ojPersona);
 
             // 5. Remove Loading & Add AI Message
             removeLoading(loadingId);
-            appendMessage('Alex AI', responseText);
+            appendMessage('OJ AI', responseText);
         }
 
         function appendMessage(sender, text) {
